@@ -12,7 +12,7 @@ title: test page
 
 ｜javascript《ジャワスクリプト》のテスト
 
-数式 $$ y = x^{2}_1 $$ と数式
+数式 $ y = x^{2}_1 $ と数式
 
 \\[ y = \int^{z=\\infty}_{x =0} x^3 dx  \\]
 
@@ -27,6 +27,6 @@ title: test page
 
 （<span lang="en"><i>E</i> = <i>mc</i><sup>2</sup></span>）
 
-エネルギーと質量には $$ E = mc^2 $$ の関係がある。
+エネルギーと質量には $ E = mc^2 $ の関係がある。
 
 \\[x = {-b \\pm {}^{3}\sqrt{b^2-4ac} \\over 2a}. \\]
