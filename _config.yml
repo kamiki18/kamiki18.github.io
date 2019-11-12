@@ -26,4 +26,5 @@ kramdown:
   use_coderay: true
   coderay_line_numbers: nil
 
-theme: minima
+# theme: minima
+theme: jekyll-theme-cayman
