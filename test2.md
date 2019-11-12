@@ -3,10 +3,13 @@ layout: default
 title: test2 page
 ---
 
-~~~ ruby
-def hoge
-	'piyo'
-end
+~~~ c
+int main(){
+   int i;
+   for(i = 0;i < 10; i++){
+      printf("%d\n", i);
+   }
+}
 ~~~
 
 backquote `c++ = x*y;`

@@ -9,6 +9,8 @@ def hoge
 end
 ~~~
 
+backquote `c++ = x*y;`
+
 
 - [x]  hello.
 
