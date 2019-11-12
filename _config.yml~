@@ -25,5 +25,3 @@ kramdown:
   syntax_highlighter: rouge
   use_coderay: true
   coderay_line_numbers: nil
-
-theme: minima
