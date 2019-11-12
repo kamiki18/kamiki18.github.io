@@ -1,1 +1,11 @@
-theme: jekyll-theme-slate
+#destination: ./_site
+#auto:        false
+#lsi:         false
+#server_port: 4000
+#pygments:    true
+#markdown:    maruku
+#permalink:   date
+#
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
