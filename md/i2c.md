@@ -31,8 +31,9 @@ int tlv320aic3204_read(uint8_t d0)
 i2c  0 8              #   8ページ目を選択。
 i2c  0                #   reg0 を読む。
 0x8                   #   無事 8ページ目が選択された。
-i2c  1                #   Page8/reg1 に 4 を読む。書き込み、Adaptive mode を有効に。
+i2c  1                #   Page8/reg1 を読む。
 0x4                   #   Adaptive mode は有効になっている。
+i2c  1  5             #   Page8/reg1 に 5 を書き込んでフィルタデータを miniDSP に送り込む。 
 
 ~~~
 
