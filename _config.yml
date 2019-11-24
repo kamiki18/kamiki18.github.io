@@ -23,7 +23,7 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-  use_coderay: true
+  enable_coderay: true
   coderay_line_numbers: nil
 
 # theme: minima

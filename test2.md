@@ -24,3 +24,19 @@ backquote `c++ = x*y;`
 |ccc|ddd|
 |eee|fff|
 
+
+<details>
+<summary>押してみそ？</summary>
+な？
+
+```pl
+use strict;
+```
+
+どう？
+</details>
+だめじゃん。
+
+github projects に repo なみの history と snapshot がほしいな。
+
+

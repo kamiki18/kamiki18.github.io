@@ -1,0 +1,33 @@
+---
+layout: default
+title: I2C readback, etc.
+---
+
+## I2C command.
+
+
+TLV320AIC3204 の miniDSP にコードを書き込むにあたり、TLV320AIC3204 のレジスタがどうなってるかを見るための readback が欲しくなった。
+
+~~~ c
+
+int tlv320aic3204_read(uint8_t d0)
+{
+  int addr = AIC3204_ADDR;
+  uint8_t buf[] = { d0 };
+  i2cAcquireBus(&I2CD1);
+  i2cMasterTransmitTimeout(&I2CD1, addr, buf, 1, NULL, 0, 1000);
+  i2cMasterReceiveTimeout(&I2CD1, addr, buf, 1, 1000);
+  i2cReleaseBus(&I2CD1);
+  return buf[0];
+}
+
+~~~
+
+まあ、わりとそんだけだが。ただこれまでまったく参照されていなかった i2cMasterReceiveTimeout() がファームの中に含まれるようになったので
+コードサイズは少し増える。
+
+
+### Reference
+
+* [scipy.signal.iirfilter](https://docs.scipy.org/doc/scipy-1.1.0/reference/generated/scipy.signal.iirfilter.html)
+* TLV320AIC3204 Application Reference Guide (SLAA577 - November 2012)
