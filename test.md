@@ -1,6 +1,9 @@
 ---
 layout: default
 title: test page
+auther: kamiki18
+output: html
+revision: Nov. 24, 2019.
 ---
 
 # トップページです
@@ -9,6 +12,19 @@ title: test page
 
 * hoge
 * huga
+
+    オート
+    hero
+
+    いちぎょうあけがいんの? \\
+    連続行 
+<dl>
+  <dd>hello</dd>
+  <dd> nigyo-me </dd>
+</dl>
+
+
+ * huga
 
 ｜javascript《ジャワスクリプト》のテスト
 
@@ -30,3 +46,24 @@ title: test page
 エネルギーと質量には $ E = mc^2 $ の関係がある。
 
 \\[x = {-b \\pm {}^{3}\sqrt{b^2-4ac} \\over 2a}. \\]
+
+
+
+チルダ下付?
+
+\\[
+
+\left\{
+  \begin{align}
+    &\begin{split}
+      AAA&=1 + 1 \\\
+      &=  \times 4
+    \end{split}\\
+    &\begin{split}
+      A&= x^2 - y_a \\\\
+      &= \frac{123}{24^2}
+    \end{split}
+  \end{align}
+\right.
+
+\\]

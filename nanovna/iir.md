@@ -1,10 +1,11 @@
 ---
 layout: default
 title: IIR study
+auther: kamiki18
+revision: Nov. 25, 2019.
 ---
 
-## scipy.signal.filter でのごにょごにょ。
-
+## `scipy.signal.filter()` を使ってのBPF設計
 
 
 NanoVNA の入力段はダイレクトコンバージョンで 5kHz の IF に落し、そこから 48ksps の ADC でデジタル値にしたあと 5kHz のサイン波/コサイン波と内積して振幅、位相を入手している。
@@ -14,7 +15,8 @@ NanoVNA の入力段はダイレクトコンバージョンで 5kHz の IF に�
 
 ところでざっと設計したあとで知ったことだが、IF は 5kHz からけっこうバラつく:
 
-![Frequency deviation (IF)](/images/freqdev_if.png  "IFの5kHzからの偏差")
+![Frequency deviation (IF)](/nanovna/images/freqdev_if.png  "IFの5kHzからの残差")
+
 
 これは NanoVNA ファームウエア 0.3.1 において、50kHz 〜 1.5GHz まで 1Hz ステップでスキャンした時の IF の 5kHz からのズレをあらわしたヒストグラムである。
 ＋40Hz 〜 −60Hz くらいは確実に通過させるべき状況であった。
@@ -49,18 +51,18 @@ print(sos)
 BIQUAD のフィルタが三つ入ったリストの形で BPF が得られた。
 それぞれのフィルタの途中をピックアップしつつ周波数特性を表示してみると:
 
-![filter()の生の結果](/images/elliptic3u.png)
+![filter()の生の結果](/nanovna/images/elliptic3u.png)
 
 最終的なフィルタ(緑の線)はとても立派なものなのだが、初段、青のフィルタの段階で 40dB も叩き落としているのはいただけない。
 係数を適当にスケーリングしてこうした:
 
-![rescaled filter](/images/elliptic3.png)
+![rescaled filter](/nanovna/images/elliptic3.png)
 
 5050Hz あたりが 2段通過時点でゲインを持ってしまっているので 30Hz 上に強烈な信号があって飽和すると問題だが、
 5kHz の信号を減衰させて増幅とかやって情報落ちするよりは良いだろう。
 頂上付近の形状、群遅延の様子:
 
-![頂上付近](/images/elliptic3dx.png)
+![頂上付近](/nanovna/images/elliptic3dx.png)
 
 太い線が振幅特性(縦軸左)、細い線が群遅延特性(縦軸右)。
 5000Hz 前後で群遅延が平坦になるように、地味に係数を調整してあったりする。
@@ -76,14 +78,14 @@ sos2 = signal.iirfilter(3, [4850.0/24000, 5150.0/24000], btype='band', analog=Fa
 
 ~~~
 
-で、橙の線が上記 bessel BPF:
+で、青の線が上記 bessel BPF:
 
-![Beesel BPF and adjusted version](/images/adjusted.png)
+![Beesel BPF and adjusted version](/nanovna/images/adjusted.png)
 
 Bessel 型は LPF の時は群遅延の最大平坦という特徴があるが、HPF や BPF にはそんなもんはない。
 頂上は右に傾いでいる。多少補正して
 
-![Adjusted version](/images/adjusted2.png)
+![Adjusted version](/nanovna/images/adjusted2.png)
 
 使う。... のだが、いずれにしても平坦領域不足である。リテイク。
 
@@ -102,8 +104,8 @@ const uint8_t adc_filter_config[] = { ... }
 
 ~~~
 
-などとなっている部分である。これをアプリケーションガイド (TLV320AIC3204 Application Reference Guide SLAA577) の
-Biquad section (p27) とデータのバイトオーダー (同 p143) を見ながら sos に再現してみるともちろん直前でコメントアウトされている signal.bessel() 等とは一致しない。
+などとなっている部分である。これを TLV320AIC3204 のリファレンスガイドの Biquad section の項 (p26) とデータのバイトオーダーを記したページ (同 p143)
+見ながら sos に再現してみると、もちろん直前でコメントアウトされている signal.bessel() 等とは一致しない。
 各ステージのゲイン調整と、ステージの入れ換えが行われている。
 そのうちの二つ、ベッセル型 2 次とエリプティック型 5 次を各ステージにばらして鑑賞。
 
@@ -122,8 +124,8 @@ e5_sos = np.array( [
 
 ~~~
 
-![Bessel BPF, 2nd-order](/images/bessel2_031.png)
-![Elliptic BPF, 5th-order](/images/elliptic5_031.png)
+![Bessel BPF, 2nd-order](/nanovna/images/bessel2_031.png)
+![Elliptic BPF, 5th-order](/nanovna/images/elliptic5_031.png)
 
 ベッセル型 2 次のほうは 5200Hz あたりのピークゲインと 5000Hz のターゲットゲインの調整に気くばり感。
 でもエリプティック型のほうは 3つ目と 4つ目のステージのゲイン係数調整まだ入ってないかも。
@@ -132,7 +134,7 @@ e5_sos = np.array( [
 0dB を越えるピークができるだけ低くなるよう、右左右左と交互にピークがあるステージをもってくるものじゃないのかなぁ ...。
 実際 iirfilter が返してくるデフォルトのフィルタはそういう順序になっているし。
 
-### Reference
+### References {#ref}
 
 * [scipy.signal.iirfilter](https://docs.scipy.org/doc/scipy-1.1.0/reference/generated/scipy.signal.iirfilter.html)
 * TLV320AIC3204 Application Reference Guide (SLAA577 - November 2012)

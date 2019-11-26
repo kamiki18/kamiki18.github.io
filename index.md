@@ -12,18 +12,27 @@ title: kamiki18's webpage
 
 ~~~
 
-### [SWD のピンヘッダ付け]
-          ABS ケース入り NanoVNA-H なので空間制約があった。
+### NanoVNA Index:
 
-### [TLV320AIC3204 の I2C リードバック](md/i2c.html)。OK. PR はそのうち。 
+ * SWD のピンヘッダ付け \\
+       OK. 黒ABSケース入りNanoVNA-Hだと上下が狭くて一工夫要った。
 
-### [受信フィルタの形状を自力で見る]
+ * [VBATダイオードの電圧降下](nanovna/vbat.html) \\
+       デフォルトは過大じゃないだろうか。そのうち PR いき。
 
-### [IIR フィルタの設計](md/iir.html)
+ * [TLV320AIC3204 の I2C read/write command](nanovna/i2c.html) \\
+       OK. PR はそのうち。 
 
-### [set_frequency() の調査](md/fraction.html)
+ * [TLV320AIC3204 向け IIRフィルタ](nanovna/iir.html)
 
-### 下限 32kHzへの拡張。
-  そもそも qrp73氏の NanoVNA-Q は 10kHz まで拡張されている。
+ * [i5351 の係数計算法の調査](nanovna/fraction.html) \\
+       有理近似の調査。
 
-### [ToDo.とか。]
+ * [受信フィルタ特性の表示]  \\
+      外部信号源なしにフィルタ特性を表示する。
+
+ * ToDo.
+
+
+
+
