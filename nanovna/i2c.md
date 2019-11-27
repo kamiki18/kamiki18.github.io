@@ -51,6 +51,13 @@ sweep 中は TLV320AIC3204 にゲイン設定などを発行しているので�
 読み書きする時は sweep を止めること。コンソールの i2c コマンドのほうで設定したページを覚えておくとかは、出来なくはないがちょっとやりたくない。
 
 
+### PS.
+
+元ソースでは `i2cMasterTransmitTimeout()` だけが入った関数が `#if 0` で括られていた。
+使い方が謎なんだが、... これ単独で受信できるはずの関数だったりするか?
+いや、受信できなかったから Transimit, Receive な関数書いたんだけども。
+
+
 ### Reference {#ref}
 
  * TLV320AIC3204 Application Reference Guide (SLAA577 - November 2012)
