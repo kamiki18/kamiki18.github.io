@@ -125,8 +125,8 @@ $k$ が $a_{m-1} + k a_m < M$ を満たす整数として、
 
 上の平均的な状況を見たあとだと、ofreq のワーストケースがワーストケースであると納得いく形に思える:
 
-![freq_ofreq1455-1455.png](/nanovna/images/freq_ofreq1455-1455.png)
-![freq_ofreq1455-1455.png](/nanovna/images/freqn_ofreq1455-1455.png)
+![freq deviation 1455.9949 - 1455.9951MHz](/nanovna/images/freq_ofreq1455-1455.png)
+![improved freq deviation](/nanovna/images/freqn_ofreq1455-1455.png)
 
 平均的には激的に改善するが、残差の最大の改善幅は、まあたいしたことない。
 
@@ -139,8 +139,8 @@ $k$ が $a_{m-1} + k a_m < M$ を満たす整数として、
 シグナルジェネレータやスペクトラムアナライザとして使う時はもちろん気になるが ... それは置いておいて、ofreq - freq = IF となる IF も数十ヘルツずれてくる。
 こちらは 5kHz の数十ヘルツなのでとても気になる:
 
-![freq_if1455-1455.png](/nanovna/images/freq_if1455-1455.png)
-![freqn_if1455-1455.png](/nanovna/images/freqn_if1455-1455.png)
+![IF deviation, (freq 1455.9949 - 1455.9951MHz)](/nanovna/images/freq_if1455-1455.png)
+![improved IF deviation](/nanovna/images/freqn_if1455-1455.png)
 
 改善後は freq の残差がほぼゼロになっているのだから、ofreq と同じ形になるのは当然。
 どんだけ改善しても 20Hz も残るのはフィルタを書く上で大問題だったので MCLK (CLK2; TLV320AIC3204 の MCLK に繋がる出力)  を動かしてみた。つまり
@@ -165,12 +165,12 @@ def freq_pll2(f, pll_div, opll_div, harmonics):
 
 で、IF が ADC から 5kHz に見えるよう、8MHz であるはずの MCLK を  8000000 * (5000 / IF_clk) に設定する。すると ADC からは IF が:
 
-![freqn_if1455-1455.png](/nanovna/images/freqn3_if1455-1455.png)
+![IF deviation with tracking mode](/nanovna/images/freqn3_if1455-1455.png)
 
 のように見える。かわりに MCLK が 8MHz から大幅にずれる。5kHz にとっての 60Hz は 8MHz にとっての 96kHz だから。
 
-![freqn_if1455-1455.png](/nanovna/images/freqn3_mclk1455-1455.png)
-![freqn_if1455-1455.png](/nanovna/images/freqdev_mclk.png)
+![MCLK deviation with tracking mode](/nanovna/images/freqn3_mclk1455-1455.png)
+![MCLK deviation, all range](/nanovna/images/freqdev_mclk.png)
 
 うむ、酷いな(笑)。ちなみに二つ目の赤のグラフは 50k〜1.5GHzまでスキャンした時の現ファームの MCLK 残差のヒストグラム。本来 0.3Hz しかずれてなかったことが分かる。
 

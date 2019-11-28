@@ -35,8 +35,8 @@ revision: Nov. 25, 2019.
 
 ### 表示例
 
-![Frequency deviation (IF)](/nanovna/images/prb_r1.png  "フィルタなし")
-![Frequency deviation (IF)](/nanovna/images/prb_r2.png  "エリプティックフィルタ例")
+![PRB_R1 mode, with no filter](/nanovna/images/prb_r1.png  "フィルタなし")
+![PRB_R2 mode, with IIR filter](/nanovna/images/prb_r2.png  "エリプティックフィルタ例")
 
 一つ目は標準状態。二つ目が[このへん](iir.html)で作った Elliptic 3rd-order BPF を入れたもの。
 
@@ -48,7 +48,7 @@ revision: Nov. 25, 2019.
 
 ちなみに
 
-![Frequency deviation (IF)](/nanovna/images/prb_r2_sc.png  "スミスチャートの表示")
+![Smith chart](/nanovna/images/prb_r2_sc.png  "スミスチャートの表示")
 
 [IF の微妙な偏差](fraction.html)で信号の遅延状態がころころ変わるため、フィルタを入れたまま使おうとすると smithchart やキャリブレーションが発狂する。
 現状では miniDSP に IIR 書き込んでの動作確認以上の意味はない。

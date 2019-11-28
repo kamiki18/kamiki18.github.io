@@ -24,7 +24,7 @@ L字? ケースに穴開けめんどくさい。
 普通のピンヘッダは基板上空に 12mm 要るから駄目。そこでピンヘッダを LCD面から挿し、部品面側に飛び出した部分がソケットと嵌合するようにした。
 これでも僅かにピンが高くてケースにぶつかるので、すこし押し下げて LCD面側に飛び出たピンをニッパで切り落とすことになった。
 
-![swdpin.png](/nanovna/images/swdpin.jpg)
+![ヘッダ周辺](/nanovna/images/swdpin.jpg)
 
 なお、ピンのはんだ付けは部品面からである。写真で基板の台座になっているのが NanoVNA-H のABSケース。高さの比較用に。
 
@@ -37,10 +37,11 @@ jtagkey-tiny clone で openocd を使って NanoVNA の STM32F072 まで。
 ケーブルの回路まわり:
 
  >
- >                                                    <-----------------> 作成したケーブル
+ >                                                     <----------------> 作成したケーブル
  >                                         
  >                          jtagkey clone の中ここまで↓                ↓NanoVNAの中ここから
- >                                                                       -- 1pin/VDD
+ >                                                    ↓                ↓
+ >                                                    ↓                 -- 1pin/VDD
  >                       VDD --------------------------                  -- 2pin/NRST STM32F072Cの7pin/nRST
  >                       GND ---------------------------------------------- 3pin/GND
  >     2232Lの24pin/AD0  TCK -------|＞-------100ohm ---------------------- 4pin/TCK  STM32F072Cの37pin/PA14/SWCLK
@@ -54,7 +55,7 @@ jtagkey-tiny clone で openocd を使って NanoVNA の STM32F072 まで。
  >            11pin/AC3  nSRST /OE
  >            12pin/AC2  nTRST /OE
 
-![swdpin.png](/nanovna/images/swdcable.jpg)
+![ケーブル回路の実装](/nanovna/images/swdcable.jpg)
 
 
 TDI のところに 470Ωの抵抗のリード線を挿して圧着、TDO のところに AWG28 と 0.3mmφスズメッキ線を同時に圧着する。
